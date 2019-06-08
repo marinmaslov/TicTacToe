@@ -116,8 +116,11 @@ checkIfUneven(){
       }
     }
     if(unevenStatus){
+      let newTotal = this.state.total;
+      newTotal++;
       this.setState ({
-        winner: "uneven"
+        winner: "uneven",
+        total: newTotal
       })
     }
 }
