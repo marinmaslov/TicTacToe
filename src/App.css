@@ -1,33 +1,24 @@
-.App {
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.logo {
+  max-width: 600px;
+  margin: 20px auto;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.logo img {
+  height:50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.gameContainer {
+  width: 300px;
+  margin: 20px auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  flex-direction: row;
+  flex-wrap: wrap;
 }
