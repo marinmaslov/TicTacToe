@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import Player from './components/player';
 import { runInThisContext } from 'vm';
 
-
+/* Board dimensions and winning combinations */
 const N = 3;
 const winning = [["0","1","2"],["3","4","5"],["6","7","8"],["0","3","6"],["1","4","7"],["2","5","8"],["0","4","8"],["2","4","6"]];
 
-
+/* Game fields */
 const Field = styled.div`
   flex: 1 1 auto;
   width: 33.3%;
@@ -29,6 +29,7 @@ const FieldInner = styled.div`
   border-radius: 5px;
 `;
 
+/* Winner display */
 const WinnerAnnouncement = styled.div`
   max-width:300px;    
   margin: 10px auto;
@@ -49,6 +50,7 @@ const WinnerCountText = styled.div`
   text-align: center;
 `;
 
+/* Reload button */
 const ReloadButton = styled.button`
   background: #dd685c;
   width:200px;
@@ -60,8 +62,6 @@ const ReloadButton = styled.button`
   font-size:1em;
   font-weight:700;
 `;
-
-
 
 class App extends Component {
   constructor(props) {
@@ -81,6 +81,7 @@ class App extends Component {
     }
   }
 
+  /* If reload set initial values */
   handleReload(){
     this.setState({
       gameContainer: Array(N*N).fill(null),
@@ -94,6 +95,7 @@ class App extends Component {
     })
   }
 
+  /* Checking winner */
   checkIfWinner(){
     if(this.state.winner){
       if(this.state.winner === "X"){ 
@@ -108,6 +110,7 @@ class App extends Component {
     }
   }
 
+/* Checking if uneven */
 checkIfUneven(){
     let unevenStatus = true;
     for(let i = 0; i<N*N; i++){
@@ -125,6 +128,7 @@ checkIfUneven(){
     }
 }
 
+  /* Checking if winning event */
   checkGame() {
     let newWinner = this.state.winner;
     for(let i = 0; i < winning.length; i++){
@@ -174,11 +178,13 @@ checkIfUneven(){
         })
       }
     }
+    /* If all fields are clicked, check if uneven */
     if(!newWinner){
       this.checkIfUneven();
     }
   }
 
+  /* Handleing events on GameBox */
   handleClick(index) {
     if(this.state.player && !this.state.winner){    
       let newGameContainer = this.state.gameContainer;
@@ -207,6 +213,7 @@ checkIfUneven(){
     }
   }
 
+  /* Setting player */
   setPlayer(newPlayer){
     this.setState({
       player: newPlayer
@@ -214,20 +221,26 @@ checkIfUneven(){
   }
 
   render() {
+    /* Game Fields */
     const Fields = this.state.gameContainer.map((fieldValue, index) => 
       <Field key={index}>
         <FieldInner onClick={() => this.handleClick(index)} style={{background: this.state.background[index], cursor: this.state.cursor[index], opacity: this.state.opacity[index]}}>{fieldValue}</FieldInner>
       </Field>
-    ); 
+    );
 
+    /* Plazer menu */
     let playerMenu = this.state.player ? "":<Player player={(e) => this.setPlayer(e)}/>;
 
+    /* GameBox */
     let gameBox = this.state.player ? <div className="gameContainer">{Fields}</div>:"";
 
+    /* Checking if there is a winner */
     let Results = this.checkIfWinner();
     
+    /* Winner Message */
     let winnerMessage = this.state.winner ? <WinnerAnnouncement className="winnerMessage"><h2>{Results}</h2><ReloadButton onClick={() => this.handleReload()}>Play Again</ReloadButton></WinnerAnnouncement>:"";
 
+    /* Result Message */
     let resultMessage = <WinnerAnnouncement className="winnerMessage"><h3>Total games: {this.state.total}</h3><WinnerCountInner><WinnerCountText>X: {this.state.winsX}</WinnerCountText><WinnerCountText>O: {this.state.winsO}</WinnerCountText></WinnerCountInner></WinnerAnnouncement>;
 
     return (
@@ -237,6 +250,7 @@ checkIfUneven(){
             <h1>Tic Tac Toe</h1>
           </div>
           
+          {/* Rendering game parts */}
           {playerMenu}
           {gameBox}
           {winnerMessage}

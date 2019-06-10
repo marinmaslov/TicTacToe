@@ -47,6 +47,7 @@ const PlayerO = styled.input`
 
 class Player extends Component {
 
+    /* Handle choice */
     handlePlayer(e){
         e.preventDefault();
         this.props.player(e.target.value);
