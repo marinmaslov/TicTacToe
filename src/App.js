@@ -6,9 +6,35 @@ import styled from 'styled-components';
 import Player from './components/player';
 import { runInThisContext } from 'vm';
 
+
+
 /* Board dimensions and winning combinations */
 const N = 3;
 const winning = [["0","1","2"],["3","4","5"],["6","7","8"],["0","3","6"],["1","4","7"],["2","5","8"],["0","4","8"],["2","4","6"]];
+
+/* Main game container */
+const MainContainer = styled.div`
+  width: 300px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;  
+  text-align:center;
+`;
+
+/* Logo */
+const Logotype = styled.div`
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center; 
+`;
+
+const LogoImg = styled.div`
+  background: url(${Drawing});
+  height:50px;
+  width:50px;
+  margin: 0 auto;
+`;
 
 /* Game fields */
 const Field = styled.div`
@@ -244,11 +270,12 @@ checkIfUneven(){
     let resultMessage = <WinnerAnnouncement className="winnerMessage"><h3>Total games: {this.state.total}</h3><WinnerCountInner><WinnerCountText>X: {this.state.winsX}</WinnerCountText><WinnerCountText>O: {this.state.winsO}</WinnerCountText></WinnerCountInner></WinnerAnnouncement>;
 
     return (
-      <div className="main-container">
-          <div className="logo">
-            <img src={Drawing} alt="Tic Tac Toe"/>
+      <MainContainer>
+          <Logotype>
+            {/* <img style="height:50px;" src={Drawing} alt="Tic Tac Toe"/> */}
+            <LogoImg/>
             <h1>Tic Tac Toe</h1>
-          </div>
+          </Logotype>
           
           {/* Rendering game parts */}
           {playerMenu}
@@ -256,7 +283,7 @@ checkIfUneven(){
           {winnerMessage}
           {resultMessage}
           
-        </div>
+        </MainContainer>
     );
 
 

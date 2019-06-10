@@ -18,7 +18,7 @@ const PlayerLabelContainer = styled.label`
 
 const PlayerLabel = styled.label`
     max-width:120px;    
-    margin:10px auto;
+    margin:10px;
 `;
 
 const PlayerX = styled.input`
