@@ -19,7 +19,6 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;  
-  text-align:center;
 `;
 
 /* Logo */
@@ -37,6 +36,14 @@ const LogoImg = styled.div`
 `;
 
 /* Game fields */
+const GameContainer = styled.div`
+  width: 300px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;  
+`;
+
 const Field = styled.div`
   flex: 1 1 auto;
   width: 33.3%;
@@ -258,7 +265,7 @@ checkIfUneven(){
     let playerMenu = this.state.player ? "":<Player player={(e) => this.setPlayer(e)}/>;
 
     /* GameBox */
-    let gameBox = this.state.player ? <div className="gameContainer">{Fields}</div>:"";
+    let gameBox = this.state.player ? <GameContainer>{Fields}</GameContainer>:"";
 
     /* Checking if there is a winner */
     let Results = this.checkIfWinner();
