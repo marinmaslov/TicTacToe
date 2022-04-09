@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import Drawing from './tic-tac-toe-drawn.svg';
 import './App.css';
 import styled from 'styled-components';
 import Player from './components/player';
-import { runInThisContext } from 'vm';
+//import { runInThisContext } from 'vm';
 
 
 
